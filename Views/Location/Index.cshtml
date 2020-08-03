@@ -1,0 +1,62 @@
+﻿@using xmlMVC.Models
+
+@{
+    ViewBag.Title = "Index";
+    List<Location> allData = ViewBag.allData;
+    var locationGroup = allData
+        .Where(x => x.LocationName == "釣魚台海面");
+
+
+
+}
+
+<h2>Index</h2>
+
+
+    @*@foreach (var item in locationGroup)
+        {
+            <tr>
+                <th>
+                    @item.Key
+                </th>
+            </tr>
+
+            foreach (var weather in item)
+            {
+
+                <tr>
+                    <td>@Convert.ToDateTime(weather.StartTime).ToString("MM/dd")</td>
+                    <td>@weather.Wx</td>
+                    <td>@weather.WindSpeed</td>
+                    <td>@weather.WindDir</td>
+                    <td>@weather.WaveHeight</td>
+                    <td>@weather.WaveType</td>
+                </tr>
+            }
+        }*@
+    @allData.Select(x => x.LocationName).FirstOrDefault()
+    <ul>
+
+        @foreach (var item in locationGroup)
+        {
+            <li>
+                @Convert.ToDateTime(item.StartTime).ToString("MM/dd")
+            </li>
+            <li>
+                @item.Wx
+            </li>
+            <li>
+                @item.WindSpeed
+            </li>
+            <li>
+                @item.WindDir
+            </li>
+            <li>
+                @item.WaveHeight
+            </li>
+            <li>
+                @item.WaveType
+            </li>
+        }
+
+    </ul>
